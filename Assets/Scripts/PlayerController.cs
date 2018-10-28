@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
     private float ropeDistanceMultiplier = 1;
     [SerializeField]
     private LayerMask groundLayer;
+    [SerializeField]
+    private MoveContinuously elephants;
+    private SpriteRenderer renderer;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour {
         swingJoint = GetComponent<SpringJoint2D>();
         ropeLine = GetComponent<LineRenderer>();
         ropeLine.SetPosition(0, transform.position);
+        renderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -37,10 +41,12 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             MovePlayer(false);
+            renderer.flipX = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
             MovePlayer(true);
+            renderer.flipX = false;
         }
         if (Input.GetKeyDown(KeyCode.W) && isGrounded())
         {
@@ -124,9 +130,9 @@ public class PlayerController : MonoBehaviour {
         bottomRight.x += playerCollider.bounds.extents.x;
         bottomRight.y -= playerCollider.bounds.extents.y;
 
-        Debug.DrawRay(bottomLeft, Vector2.down * 0.1f, Color.green);
+        //Debug.DrawRay(bottomLeft, Vector2.down * 0.1f, Color.green);
         RaycastHit2D hitLeft = Physics2D.Raycast(bottomLeft, Vector2.down, 0.1f, groundLayer);
-        Debug.DrawRay(bottomRight, Vector2.down * 0.1f, Color.green);
+        //Debug.DrawRay(bottomRight, Vector2.down * 0.1f, Color.green);
         RaycastHit2D hitRight = Physics2D.Raycast(bottomRight, Vector2.down, 0.1f, groundLayer);
 
         if (hitLeft || hitRight)
@@ -148,6 +154,14 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Spider")
+        {
+            Death();
+        }
+    }
+
     private void Death()
     {
         if (GameManager.instance.playerHealth <= 0)
@@ -159,6 +173,8 @@ public class PlayerController : MonoBehaviour {
             transform.position = startLocation.position;
             playerRigidbody.velocity = Vector2.zero;
             GameManager.instance.playerHealth--;
+            if(elephants != null)
+                elephants.Reset();
         }
     }
 }
