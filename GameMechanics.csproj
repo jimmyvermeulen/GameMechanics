@@ -317,6 +317,7 @@
     <Compile Include="Assets\QuitGame.cs" />
     <Compile Include="Assets\RestartLevel.cs" />
     <Compile Include="Assets\RockFall.cs" />
+    <Compile Include="Assets\RockSpawner.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SwingOnTarget.cs" />

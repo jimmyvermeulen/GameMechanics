@@ -602,6 +602,16 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 114134304843568752, guid: 14fe9ebb89d06cf4aa0bb474a2ea644c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 619100368}
+    - target: {fileID: 114134304843568752, guid: 14fe9ebb89d06cf4aa0bb474a2ea644c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114207046731222934, guid: 14fe9ebb89d06cf4aa0bb474a2ea644c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 14fe9ebb89d06cf4aa0bb474a2ea644c, type: 2}

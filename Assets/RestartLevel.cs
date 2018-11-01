@@ -15,10 +15,11 @@ public class RestartLevel : MonoBehaviour {
 		
 	}
 
-    void Restart()
+    public void Restart()
     {
         GameManager.instance.bananas = 0;
         GameManager.instance.collectibles = 0;
+        GameManager.instance.playerHealth = 3;
         SceneManager.LoadScene(GameManager.instance.level);
     }
 }

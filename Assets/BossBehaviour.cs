@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossBehaviour : MonoBehaviour {
     public Sprite throwSprite;
     public Sprite leftSprite;
     public Sprite rightSprite;
     public Sprite hitSprite;
+
+    public SpriteRenderer[] heartSprites;
     
     private Animation bossAnimation;
 
@@ -120,9 +123,19 @@ public class BossBehaviour : MonoBehaviour {
 
     public void Hit()
     {
+        throwSpeed *= 1.5f;
+        throwDelay *= 0.8f;
+        moveSpeed *= 1.2f;
+
         currentState = State.Hurting;
         health--;
-        if(health <= 0)
+        if (health < 3)
+            heartSprites[2].color = Color.black;
+        if (health < 2)
+            heartSprites[1].color = Color.black;
+        if (health < 1)
+            heartSprites[0].color = Color.black;
+        if (health <= 0)
         {
             Death();
         }
@@ -134,7 +147,6 @@ public class BossBehaviour : MonoBehaviour {
 
     public void Death()
     {
-        //spawn banana
-        //
+        SceneManager.LoadScene("Victory");
     }
 }

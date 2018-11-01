@@ -175,6 +175,8 @@ public class PlayerController : MonoBehaviour {
 
     private void Death()
     {
+        swingJoint.enabled = false;
+        ropeLine.enabled = false;
         if (GameManager.instance.playerHealth <= 0)
         {
             SceneManager.LoadScene("Game Over");
