@@ -8,6 +8,7 @@ public class NextLevelOnCollison : MonoBehaviour {
     {
         if(collision.transform.tag == "Player")
         {
+            GameManager.instance.level = SceneManager.GetActiveScene().buildIndex + 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

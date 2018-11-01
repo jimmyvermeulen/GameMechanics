@@ -1554,32 +1554,32 @@ Prefab:
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
       propertyPath: m_text
-      value: "Use your Mouse to \nswing from the cubes"
+      value: "Hold the left mouse button \nto swing from the cubes"
       objectReference: {fileID: 0}
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
       propertyPath: m_fontSize
-      value: 21.15
+      value: 26.95
       objectReference: {fileID: 0}
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
       propertyPath: m_textInfo.characterCount
-      value: 39
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
       propertyPath: m_textInfo.spaceCount
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
       propertyPath: m_textInfo.wordCount
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
         type: 2}
@@ -1590,6 +1590,11 @@ Prefab:
         type: 2}
       propertyPath: m_textAlignment
       value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 114259480276060488, guid: 1014f260a8fffc945a2cfb935a23bfeb,
+        type: 2}
+      propertyPath: m_margin.z
+      value: -1.4764762
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1014f260a8fffc945a2cfb935a23bfeb, type: 2}

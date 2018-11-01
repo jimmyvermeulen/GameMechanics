@@ -9,6 +9,8 @@ TagManager:
   - FallArea
   - Spider
   - Wall
+  - BossMonkey
+  - Barrel
   layers:
   - Default
   - TransparentFX

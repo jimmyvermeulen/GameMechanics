@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private Text healthText, bananasText, collectiblesText;
     public static GameManager instance = null;
+    private int _level = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -64,5 +65,14 @@ public class GameManager : MonoBehaviour {
         healthText.enabled = false;
         bananasText.enabled = false;
         collectiblesText.enabled = false;
+    }
+
+    public int level
+    {
+        get { return _level; }
+        set
+        {
+            _level= value;
+        }
     }
 }

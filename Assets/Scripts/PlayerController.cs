@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private MoveContinuously elephants;
     private SpriteRenderer renderer;
+    public bool raging = true;
 
 	// Use this for initialization
 	void Start () {
@@ -152,6 +153,16 @@ public class PlayerController : MonoBehaviour {
         {
             Death();
         }
+        if(collision.transform.tag == "Barrel" || collision.transform.tag == "BossMonkey")
+        {
+            GameObject[] barrels = GameObject.FindGameObjectsWithTag("Barrel");
+            foreach(GameObject barrel in barrels)
+            {
+                Destroy(barrel);
+            }
+            Death();
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
