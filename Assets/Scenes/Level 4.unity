@@ -200,6 +200,16 @@ Prefab:
       propertyPath: heartSprites.Array.data[2]
       value: 
       objectReference: {fileID: 301222442}
+    - target: {fileID: 61720858903648464, guid: cd8736d88f9e64c46aed7850f7efb13f,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 61720858903648464, guid: cd8736d88f9e64c46aed7850f7efb13f,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd8736d88f9e64c46aed7850f7efb13f, type: 2}
   m_IsPrefabAsset: 0

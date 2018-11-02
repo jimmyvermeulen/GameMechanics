@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RestartLevel : MonoBehaviour {
 
@@ -21,5 +22,8 @@ public class RestartLevel : MonoBehaviour {
         GameManager.instance.collectibles = 0;
         GameManager.instance.playerHealth = 3;
         SceneManager.LoadScene(GameManager.instance.level);
+        GameManager.instance.healthText.enabled = true;
+        GameManager.instance.bananasText.enabled = true;
+        GameManager.instance.collectiblesText.enabled = true;
     }
 }

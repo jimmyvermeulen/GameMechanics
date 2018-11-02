@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private float _maxCollectibles = 0;
     [SerializeField]
-    private Text healthText, bananasText, collectiblesText;
+    public Text healthText, bananasText, collectiblesText;
     public static GameManager instance = null;
     private int _level = 1;
 
