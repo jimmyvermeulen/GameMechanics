@@ -12,6 +12,7 @@ TagManager:
   - BossMonkey
   - Barrel
   - FemaleMonkey
+  - Dangerzone
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class NextLevelOnCollison : MonoBehaviour {
         if(collision.transform.tag == "Player")
         {
             GameManager.instance.level = SceneManager.GetActiveScene().buildIndex + 1;
+            GameManager.instance.playerHealth = 3;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

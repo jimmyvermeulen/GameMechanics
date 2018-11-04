@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private float _playerHealth = 0;
     private float _bananas = 0;
-    private float _collectibles = 0;
+    private float _adrenaline = 0;
     [SerializeField]
-    private float _maxCollectibles = 0;
-    [SerializeField]
-    public Text healthText, bananasText, collectiblesText;
+    public Text healthText, bananasText, adrenalineText;
+    public RectTransform adrenalineBar;
+    public float adrenalineBarWidth;
     public static GameManager instance = null;
     private int _level = 1;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
         instance = this;
         playerHealth = playerHealth;
         bananas = bananas;
-        collectibles = collectibles;
+        adrenaline = adrenaline;
     }
 	
 	// Update is called once per frame
@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public float collectibles
+    public float adrenaline
     {
-        get { return _collectibles; }
+        get { return _adrenaline; }
         set
         {
-            _collectibles = value;
-            collectiblesText.text = "Collectibles: " + _collectibles;
+            _adrenaline = value;
+            //adrenalineText.text = "Adrenaline: " + _adrenaline;
+            adrenalineBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _adrenaline / 100 * adrenalineBarWidth);
         }
     }
 
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour {
     {
         healthText.enabled = false;
         bananasText.enabled = false;
-        collectiblesText.enabled = false;
+        adrenalineText.enabled = false;
     }
 
     public int level

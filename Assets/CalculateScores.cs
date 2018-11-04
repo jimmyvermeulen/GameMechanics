@@ -23,7 +23,7 @@ public class CalculateScores : MonoBehaviour {
     void calculateScoreTexts()
     {
         bananaText.text = "Bananas: " + GameManager.instance.bananas + " X " + bananaScore + " = " + (bananaScore * GameManager.instance.bananas);
-        collectibleText.text = "Collectibles: " + GameManager.instance.collectibles + " X " + collectibleScore + " = " + (collectibleScore * GameManager.instance.collectibles);
-        scoreText.text = "" + ((GameManager.instance.collectibles * collectibleScore) + (GameManager.instance.bananas * bananaScore));
+        //collectibleText.text = "Collectibles: " + GameManager.instance.collectibles + " X " + collectibleScore + " = " + (collectibleScore * GameManager.instance.collectibles);
+        scoreText.text = "" + (/*(GameManager.instance.collectibles * collectibleScore)*/ + (GameManager.instance.bananas * bananaScore));
     }
 }

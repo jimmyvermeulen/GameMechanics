@@ -162,6 +162,12 @@ public class PlayerController : MonoBehaviour {
             }
             Death();
         }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Dangerzone")
+            GameManager.instance.adrenaline += 10 * Time.deltaTime;
+
 
     }
 

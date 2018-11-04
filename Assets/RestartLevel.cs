@@ -19,11 +19,11 @@ public class RestartLevel : MonoBehaviour {
     public void Restart()
     {
         GameManager.instance.bananas = 0;
-        GameManager.instance.collectibles = 0;
+        GameManager.instance.adrenaline = 0;
         GameManager.instance.playerHealth = 3;
         SceneManager.LoadScene(GameManager.instance.level);
         GameManager.instance.healthText.enabled = true;
         GameManager.instance.bananasText.enabled = true;
-        GameManager.instance.collectiblesText.enabled = true;
+        GameManager.instance.adrenalineText.enabled = true;
     }
 }

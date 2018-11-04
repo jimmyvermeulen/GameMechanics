@@ -308,6 +308,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AlphaGlow.cs" />
     <Compile Include="Assets\BananaPickup.cs" />
     <Compile Include="Assets\BossBehaviour.cs" />
     <Compile Include="Assets\CalculateScores.cs" />
