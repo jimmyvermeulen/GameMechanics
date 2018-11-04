@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float jumpSpeed = 0;
     [SerializeField]
+    private float maxRopeLength = 0;
+    [SerializeField]
     private float ropeDistanceMultiplier = 1;
     [SerializeField]
     private LayerMask groundLayer;
@@ -26,15 +28,24 @@ public class PlayerController : MonoBehaviour {
     private MoveContinuously elephants;
     private SpriteRenderer renderer;
     public bool raging = true;
+    private GameObject[] swingTargets;
+    private GameObject target;
+    private Rigidbody2D targetRb;
 
 	// Use this for initialization
 	void Start () {
+        swingTargets = GameObject.FindGameObjectsWithTag("SwingTarget");
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         swingJoint = GetComponent<SpringJoint2D>();
         ropeLine = GetComponent<LineRenderer>();
         ropeLine.SetPosition(0, transform.position);
         renderer = GetComponent<SpriteRenderer>();
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            targetingLine.startWidth = 0;
+            targetingLine.endWidth = 0;
+        }
 	}
 	
 	// Update is called once per frame
@@ -54,16 +65,54 @@ public class PlayerController : MonoBehaviour {
             playerRigidbody.AddForce(new Vector2(0, jumpSpeed));
         }
 
+        if (targetingLine.enabled)
+        {
+            /*Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            targetPosition.Normalize();
+            targetPosition *= 1000;
+            */
+            float shortestDistance = float.MaxValue;
+            target = null;
+            targetRb = null;
+            foreach (GameObject swingTarget in swingTargets)
+            {
+                float tempDistance = Vector2.Distance(swingTarget.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                if (tempDistance < shortestDistance)
+                {
+                    shortestDistance = tempDistance;
+                    if (target != swingTarget)
+                    {
+                        target = swingTarget;
+                    }
+                }
+            }
+
+            targetingLine.SetPosition(0, transform.position);
+            if (target != null)
+            {
+                Vector2 targetDirection = target.transform.position - transform.position;
+                targetDirection.Normalize();
+                int layerMask = 1 << 8;
+
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, maxRopeLength, layerMask);
+                if (hit.collider != null && hit.transform.tag == "SwingTarget")
+                {
+                    targetingLine.SetPosition(1, target.transform.position);
+                    targetRb = target.GetComponent<Rigidbody2D>();
+                }
+                else
+                {
+                    targetingLine.SetPosition(1, transform.position);
+                    target = null;
+                    targetRb = null;
+                }
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 targetDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            targetDirection.Normalize();
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, 1000f);
-            if (hit.collider != null && hit.transform.tag == "SwingTarget")
-            {
-                SwingFromTarget(hit.rigidbody);
-            }
+            if(targetRb != null)
+                SwingFromTarget(targetRb);
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -77,15 +126,6 @@ public class PlayerController : MonoBehaviour {
         if (ropeLine.enabled)
         {
             ropeLine.SetPosition(0, transform.position);
-        }
-
-        if (targetingLine.enabled)
-        {
-            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            targetPosition.Normalize();
-            targetPosition *= 1000;
-            targetingLine.SetPosition(0, transform.position);
-            targetingLine.SetPosition(1, targetPosition);
         }
     }
 
@@ -165,8 +205,6 @@ public class PlayerController : MonoBehaviour {
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Dangerzone")
-            GameManager.instance.adrenaline += 10 * Time.deltaTime;
 
 
     }

@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
-    guid: 1b7b738bda0a09b4a9bd7a30bd940a25
+    guid: be604412246fad2498f86a743f535688
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 5c91dccabaef36f46a5853e7a61e5015
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: a2bd0254e488963439907ebfdd300a31
+  - enabled: 1
+    path: Assets/Scenes/Cut Scene.unity
+    guid: 1b7b738bda0a09b4a9bd7a30bd940a25
   m_configObjects: {}

@@ -126,6 +126,7 @@ public class BossBehaviour : MonoBehaviour {
         throwSpeed *= 1.5f;
         throwDelay *= 0.8f;
         moveSpeed *= 1.2f;
+        moveTarget = 0;
 
         currentState = State.Hurting;
         health--;

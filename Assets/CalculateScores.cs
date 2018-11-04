@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CalculateScores : MonoBehaviour {
     [SerializeField]
-    private Text bananaText, collectibleText, scoreText;
+    private Text previousScoreText, bananaText, livesText, scoreText;
     [SerializeField]
-    private float bananaScore, collectibleScore;
+    private float bananaScore, liveScore;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,6 @@ public class CalculateScores : MonoBehaviour {
     void calculateScoreTexts()
     {
         bananaText.text = "Bananas: " + GameManager.instance.bananas + " X " + bananaScore + " = " + (bananaScore * GameManager.instance.bananas);
-        //collectibleText.text = "Collectibles: " + GameManager.instance.collectibles + " X " + collectibleScore + " = " + (collectibleScore * GameManager.instance.collectibles);
         scoreText.text = "" + (/*(GameManager.instance.collectibles * collectibleScore)*/ + (GameManager.instance.bananas * bananaScore));
     }
 }
