@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     private int _timeBonus = 0;
     [SerializeField]
     public Text healthText, bananasText, timeBonusText;
+    public Image healthImage, bananasImage, hudBackgroundImage;
     public float adrenalineBarWidth;
     public static GameManager instance = null;
     private int _level = 1;
