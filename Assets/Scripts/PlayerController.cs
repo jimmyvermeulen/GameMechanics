@@ -31,9 +31,13 @@ public class PlayerController : MonoBehaviour {
     private GameObject[] swingTargets;
     private GameObject target;
     private Rigidbody2D targetRb;
+    public AudioClip deathSound;
+    public AudioClip jumpSound;
+    private AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
         swingTargets = GameObject.FindGameObjectsWithTag("SwingTarget");
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
@@ -63,6 +67,9 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W) && isGrounded())
         {
             playerRigidbody.AddForce(new Vector2(0, jumpSpeed));
+            audioSource.Stop();
+            audioSource.clip = jumpSound;
+            audioSource.Play();
         }
 
         if (targetingLine.enabled)
@@ -221,6 +228,9 @@ public class PlayerController : MonoBehaviour {
     {
         swingJoint.enabled = false;
         ropeLine.enabled = false;
+        audioSource.Stop();
+        audioSource.clip = deathSound;
+        audioSource.Play();
         if (GameManager.instance.playerHealth <= 0)
         {
             SceneManager.LoadScene("Game Over");

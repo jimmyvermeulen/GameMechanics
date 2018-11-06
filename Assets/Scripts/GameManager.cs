@@ -135,7 +135,8 @@ public class GameManager : MonoBehaviour {
 
     void UpdateTimeBonus()
     {
-        timeBonus -= 20;
+        if(timeBonus > 0)
+            timeBonus -= 20;
     }
 
     public void StopTimeBonus()
@@ -145,24 +146,10 @@ public class GameManager : MonoBehaviour {
 
     private void PlayBackgroundMusic()
     {
-        if (level == 1 && level == 2 && backgroundMusic.clip != normalBackgroundMusic)
+        if ((level == 1 || level == 2) && backgroundMusic.clip != normalBackgroundMusic)
         {
             backgroundMusic.Stop();
             backgroundMusic.clip = normalBackgroundMusic;
-            backgroundMusic.volume = 0.3f;
-            backgroundMusic.Play();
-        }
-        else if (level == 3 && backgroundMusic.clip != level3Music)
-        {
-            backgroundMusic.Stop();
-            backgroundMusic.clip = level3Music;
-            backgroundMusic.volume = 0.3f;
-            backgroundMusic.Play();
-        }
-        else if (level == 4 && backgroundMusic.clip != bossBackgroundMusic)
-        {
-            backgroundMusic.Stop();
-            backgroundMusic.clip = bossBackgroundMusic;
             backgroundMusic.volume = 0.3f;
             backgroundMusic.Play();
         }
@@ -177,6 +164,20 @@ public class GameManager : MonoBehaviour {
         {
             backgroundMusic.Stop();
             backgroundMusic.clip = victoryMusic;
+            backgroundMusic.volume = 0.3f;
+            backgroundMusic.Play();
+        }
+        else if (level == 3 && backgroundMusic.clip != level3Music)
+        {
+            backgroundMusic.Stop();
+            backgroundMusic.clip = level3Music;
+            backgroundMusic.volume = 0.3f;
+            backgroundMusic.Play();
+        }
+        else if (level == 4 && backgroundMusic.clip != bossBackgroundMusic)
+        {
+            backgroundMusic.Stop();
+            backgroundMusic.clip = bossBackgroundMusic;
             backgroundMusic.volume = 0.3f;
             backgroundMusic.Play();
         }
