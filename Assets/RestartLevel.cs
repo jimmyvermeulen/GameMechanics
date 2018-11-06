@@ -18,10 +18,9 @@ public class RestartLevel : MonoBehaviour {
 
     public void Restart()
     {
-        GameManager.instance.bananas = 0;
-        GameManager.instance.playerHealth = 3;
+        GameManager.instance.previousScore = 0;
+        GameManager.instance.playerHealth = GameManager.instance.maxHealth;
         SceneManager.LoadScene(GameManager.instance.level);
-        GameManager.instance.healthText.enabled = true;
-        GameManager.instance.bananasText.enabled = true;
+        GameManager.instance.EnableGameUI();
     }
 }

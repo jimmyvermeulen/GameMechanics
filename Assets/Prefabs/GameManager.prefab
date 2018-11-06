@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 222787461017505786}
   - component: {fileID: 114500998488433184}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BananasImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,6 +312,9 @@ MonoBehaviour:
   healthText: {fileID: 114691695553907400}
   bananasText: {fileID: 114322586171444530}
   timeBonusText: {fileID: 114635559172468714}
+  healthImage: {fileID: 114867346983612618}
+  bananasImage: {fileID: 114500998488433184}
+  hudBackgroundImage: {fileID: 114984707944145408}
   adrenalineBarWidth: 400
   normalBackgroundMusic: {fileID: 8300000, guid: 425c0aff01c173345af14e12e88c3106,
     type: 3}
@@ -321,6 +324,9 @@ MonoBehaviour:
   bossBackgroundMusic: {fileID: 8300000, guid: 91635a30fe857ce4f8e034e7cbd3d569, type: 3}
   victoryMusic: {fileID: 8300000, guid: 56133c8d6dc97234ab79acbb27741fcc, type: 3}
   levelTimeBonuses: e8030000e8030000e8030000e8030000
+  bananaScore: 100
+  livesScore: 300
+  previousScore: 1337
 --- !u!114 &114322586171444530
 MonoBehaviour:
   m_ObjectHideFlags: 1

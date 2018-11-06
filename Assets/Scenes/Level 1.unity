@@ -132,12 +132,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &72472705 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114500998488433184, guid: f5fc4a45e01e973478a48f3bfdcddae6,
-    type: 2}
-  m_PrefabInternal: {fileID: 2062295717}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &138682564
 Prefab:
   m_ObjectHideFlags: 0
@@ -523,11 +517,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4091967335206004, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.39
+      value: 7.42
       objectReference: {fileID: 0}
     - target: {fileID: 4091967335206004, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.17
+      value: -2.174
       objectReference: {fileID: 0}
     - target: {fileID: 4091967335206004, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
       propertyPath: m_LocalPosition.z
@@ -556,6 +550,10 @@ Prefab:
     - target: {fileID: 1733322005863644, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
       propertyPath: m_Name
       value: Floor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091967335206004, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3.93
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
@@ -1140,12 +1138,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6d31518c139cbf4383eb2054a22c0ab, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &1725275939 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114984707944145408, guid: f5fc4a45e01e973478a48f3bfdcddae6,
-    type: 2}
-  m_PrefabInternal: {fileID: 2062295717}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1756121519
 Prefab:
   m_ObjectHideFlags: 0
@@ -1347,6 +1339,106 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26628a885c6714f4abfe7d51e9eac8e3, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2001717097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1697235210189182, guid: 26628a885c6714f4abfe7d51e9eac8e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1995712806}
+--- !u!82 &2001717098
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2001717097}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 95c98b78f345d304685e56f01c7fc3b5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1.2
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2012159908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,32 +1755,17 @@ Prefab:
       objectReference: {fileID: 9100000, guid: 70177526389cd6b4f8f0ab0e8a352520, type: 2}
     - target: {fileID: 114094653627528576, guid: f5fc4a45e01e973478a48f3bfdcddae6,
         type: 2}
-      propertyPath: healthImage
-      value: 
-      objectReference: {fileID: 2078792834}
-    - target: {fileID: 114094653627528576, guid: f5fc4a45e01e973478a48f3bfdcddae6,
-        type: 2}
-      propertyPath: hudBackgroundImage
-      value: 
-      objectReference: {fileID: 1725275939}
-    - target: {fileID: 1937365863515342, guid: f5fc4a45e01e973478a48f3bfdcddae6, type: 2}
-      propertyPath: m_Name
-      value: BananasImage
+      propertyPath: previousScore
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114094653627528576, guid: f5fc4a45e01e973478a48f3bfdcddae6,
         type: 2}
-      propertyPath: bananasImage
-      value: 
-      objectReference: {fileID: 72472705}
+      propertyPath: _playerHealth
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5fc4a45e01e973478a48f3bfdcddae6, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &2078792834 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114867346983612618, guid: f5fc4a45e01e973478a48f3bfdcddae6,
-    type: 2}
-  m_PrefabInternal: {fileID: 2062295717}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2115822121
 GameObject:
   m_ObjectHideFlags: 0

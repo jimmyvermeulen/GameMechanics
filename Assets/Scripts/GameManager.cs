@@ -22,9 +22,15 @@ public class GameManager : MonoBehaviour {
     public AudioClip bossBackgroundMusic;
     public AudioClip victoryMusic;
     public int[] levelTimeBonuses;
+    public float bananaScore;
+    public float livesScore;
+    public float previousScore;
+    public int maxHealth;
 
 	// Use this for initialization
 	void Start () {
+        if (GameManager.instance != null)
+            Destroy(gameObject);
         SceneManager.sceneLoaded += OnLevelLoaded;
         DontDestroyOnLoad(gameObject);
         instance = this;
@@ -34,6 +40,7 @@ public class GameManager : MonoBehaviour {
         backgroundMusic = GetComponent<AudioSource>();
         PlayBackgroundMusic();
         StartTimeBonus();
+        maxHealth = playerHealth;
     }
 
     private void OnDestroy()
@@ -69,9 +76,24 @@ public class GameManager : MonoBehaviour {
 
     public void DisableGameUI()
     {
+        Debug.Log("disabled game ui");
         healthText.enabled = false;
         bananasText.enabled = false;
         timeBonusText.enabled = false;
+        healthImage.enabled = false;
+        bananasImage.enabled = false;
+        hudBackgroundImage.enabled = false;
+    }
+
+    public void EnableGameUI()
+    {
+        Debug.Log("enabled game ui");
+        healthText.enabled = true;
+        bananasText.enabled = true;
+        timeBonusText.enabled = true;
+        healthImage.enabled = true;
+        bananasImage.enabled = true;
+        hudBackgroundImage.enabled = true;
     }
 
     public int level
@@ -95,8 +117,9 @@ public class GameManager : MonoBehaviour {
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(SceneManager.GetActiveScene().buildIndex <= 4)
+            StartTimeBonus();
         PlayBackgroundMusic();
-        StartTimeBonus();
     }
 
     private void StartTimeBonus()
@@ -143,14 +166,14 @@ public class GameManager : MonoBehaviour {
             backgroundMusic.volume = 0.3f;
             backgroundMusic.Play();
         }
-        else if (level == 5 && backgroundMusic.clip != gameOverBackgroundMusic)
+        else if (SceneManager.GetActiveScene().buildIndex == 5 && backgroundMusic.clip != gameOverBackgroundMusic)
         {
             backgroundMusic.Stop();
             backgroundMusic.clip = gameOverBackgroundMusic;
             backgroundMusic.volume = 0.3f;
             backgroundMusic.Play();
         }
-        else if (level == 6 && backgroundMusic.clip != victoryMusic)
+        else if ((SceneManager.GetActiveScene().buildIndex == 6 || SceneManager.GetActiveScene().buildIndex == 8) && backgroundMusic.clip != victoryMusic)
         {
             backgroundMusic.Stop();
             backgroundMusic.clip = victoryMusic;

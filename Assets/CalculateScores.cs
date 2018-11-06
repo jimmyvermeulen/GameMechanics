@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CalculateScores : MonoBehaviour {
     [SerializeField]
-    private Text previousScoreText, bananaText, livesText, scoreText;
+    private TextMeshProUGUI previousScoreText, bananaText, livesText, scoreText;
     [SerializeField]
     private float bananaScore, liveScore;
 
