@@ -30,6 +30,7 @@ public class BossBehaviour : MonoBehaviour {
     public GameObject throwObject;
     public float throwSpeed;
     public GameObject player;
+    public GameObject bananasEnd;
     
 
 	// Use this for initialization
@@ -148,6 +149,7 @@ public class BossBehaviour : MonoBehaviour {
 
     public void Death()
     {
-        SceneManager.LoadScene("Victory");
+        bananasEnd.SetActive(true);
+        Destroy(gameObject);
     }
 }

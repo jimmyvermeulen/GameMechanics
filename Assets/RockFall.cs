@@ -8,13 +8,16 @@ public class RockFall : MonoBehaviour {
     Transform bossMonkey;
     Transform target;
     public RockSpawner rockSpawner;
+    public cutsceneLevel3 cutscene;
 
     public string targetTag;
     bool thrown = false;
 
 	// Use this for initialization
 	void Start () {
-        bossMonkey = GameObject.FindGameObjectWithTag("BossMonkey").transform;
+        GameObject bossObject = GameObject.FindGameObjectWithTag("BossMonkey");
+        if(bossObject != null)
+            bossMonkey = bossObject.transform;
         rockRb = GetComponent<Rigidbody2D>();
         if(bossMonkey == null)
             target = GameObject.FindGameObjectWithTag(targetTag).transform;
@@ -43,7 +46,17 @@ public class RockFall : MonoBehaviour {
         {
             if (collision.tag == "BossMonkey")
             {
-                collision.GetComponent<BossBehaviour>().Hit();
+                BossBehaviour bossBehaviour = collision.GetComponent<BossBehaviour>();
+                if (bossBehaviour != null)
+                {
+                    bossBehaviour.Hit();
+                }
+                else
+                {
+                    collision.gameObject.GetComponent<Animation>().Play();
+                    cutscene.StartScene();
+                }
+                    
                 if (rockSpawner != null)
                     rockSpawner.SpawnRock();
                 Destroy(gameObject);

@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
     public AudioClip deathSound;
     public AudioClip jumpSound;
     private AudioSource audioSource;
+    public bool paused = false;
+    public float deathCooldown = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -54,85 +56,92 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.A))
+        if (paused)
         {
-            MovePlayer(false);
-            renderer.flipX = true;
+            playerRigidbody.velocity = Vector3.zero;
         }
-        if (Input.GetKey(KeyCode.D))
+        else
         {
-            MovePlayer(true);
-            renderer.flipX = false;
-        }
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded())
-        {
-            playerRigidbody.AddForce(new Vector2(0, jumpSpeed));
-            audioSource.Stop();
-            audioSource.clip = jumpSound;
-            audioSource.Play();
-        }
-
-        if (targetingLine.enabled)
-        {
-            /*Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            targetPosition.Normalize();
-            targetPosition *= 1000;
-            */
-            float shortestDistance = float.MaxValue;
-            target = null;
-            targetRb = null;
-            foreach (GameObject swingTarget in swingTargets)
+            if (Input.GetKey(KeyCode.A))
             {
-                float tempDistance = Vector2.Distance(swingTarget.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                if (tempDistance < shortestDistance)
+                MovePlayer(false);
+                renderer.flipX = true;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                MovePlayer(true);
+                renderer.flipX = false;
+            }
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded())
+            {
+                playerRigidbody.AddForce(new Vector2(0, jumpSpeed));
+                audioSource.Stop();
+                audioSource.clip = jumpSound;
+                audioSource.Play();
+            }
+
+            if (targetingLine.enabled)
+            {
+                /*Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                targetPosition.Normalize();
+                targetPosition *= 1000;
+                */
+                float shortestDistance = float.MaxValue;
+                target = null;
+                targetRb = null;
+                foreach (GameObject swingTarget in swingTargets)
                 {
-                    shortestDistance = tempDistance;
-                    if (target != swingTarget)
+                    float tempDistance = Vector2.Distance(swingTarget.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    if (tempDistance < shortestDistance)
                     {
-                        target = swingTarget;
+                        shortestDistance = tempDistance;
+                        if (target != swingTarget)
+                        {
+                            target = swingTarget;
+                        }
+                    }
+                }
+
+                targetingLine.SetPosition(0, transform.position);
+                if (target != null)
+                {
+                    Vector2 targetDirection = target.transform.position - transform.position;
+                    targetDirection.Normalize();
+                    int layerMask = 1 << 8;
+
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, maxRopeLength, layerMask);
+                    if (hit.collider != null && hit.transform.tag == "SwingTarget")
+                    {
+                        targetingLine.SetPosition(1, target.transform.position);
+                        targetRb = target.GetComponent<Rigidbody2D>();
+                    }
+                    else
+                    {
+                        targetingLine.SetPosition(1, transform.position);
+                        target = null;
+                        targetRb = null;
                     }
                 }
             }
 
-            targetingLine.SetPosition(0, transform.position);
-            if (target != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                Vector2 targetDirection = target.transform.position - transform.position;
-                targetDirection.Normalize();
-                int layerMask = 1 << 8;
-
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, maxRopeLength, layerMask);
-                if (hit.collider != null && hit.transform.tag == "SwingTarget")
-                {
-                    targetingLine.SetPosition(1, target.transform.position);
-                    targetRb = target.GetComponent<Rigidbody2D>();
-                }
-                else
-                {
-                    targetingLine.SetPosition(1, transform.position);
-                    target = null;
-                    targetRb = null;
-                }
+                if (targetRb != null)
+                    SwingFromTarget(targetRb);
             }
-        }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(targetRb != null)
-                SwingFromTarget(targetRb);
-        }
+            if (Input.GetMouseButtonUp(0))
+            {
+                swingJoint.enabled = false;
+                ropeLine.enabled = false;
+                targetingLine.enabled = true;
+                isSwinging = false;
+            }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            swingJoint.enabled = false;
-            ropeLine.enabled = false;
-            targetingLine.enabled = true;
-            isSwinging = false;
-        }
-
-        if (ropeLine.enabled)
-        {
-            ropeLine.SetPosition(0, transform.position);
+            if (ropeLine.enabled)
+            {
+                ropeLine.SetPosition(0, transform.position);
+            }
         }
     }
 
@@ -231,17 +240,21 @@ public class PlayerController : MonoBehaviour {
         audioSource.Stop();
         audioSource.clip = deathSound;
         audioSource.Play();
-        if (GameManager.instance.playerHealth <= 0)
+        if (Time.time > deathCooldown)
         {
-            SceneManager.LoadScene("Game Over");
-        }
-        else
-        {
-            transform.position = startLocation.position;
-            playerRigidbody.velocity = Vector2.zero;
-            GameManager.instance.playerHealth--;
-            if(elephants != null)
-                elephants.Reset();
+            if (GameManager.instance.playerHealth <= 0)
+            {
+                SceneManager.LoadScene("Game Over");
+            }
+            else
+            {
+                deathCooldown = Time.time + 0.5f;
+                transform.position = startLocation.position;
+                playerRigidbody.velocity = Vector2.zero;
+                GameManager.instance.playerHealth--;
+                if (elephants != null)
+                    elephants.Reset();
+            }
         }
     }
 }

@@ -228,11 +228,12 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 7887eeb292ee59744b782fbee26952c0,
+        type: 3}
     - target: {fileID: 114345070576035726, guid: 6f246a06df287ff4aa60de72dbfc773d,
         type: 2}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114074808689147896, guid: 6f246a06df287ff4aa60de72dbfc773d, type: 2}
@@ -424,6 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 206402145}
   - component: {fileID: 206402144}
+  - component: {fileID: 206402146}
   m_Layer: 0
   m_Name: 181a723f-1143-41f5-83f2-25eac7c57990
   m_TagString: Untagged
@@ -490,6 +492,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &206402146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 206402143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2457a7a26c0fa14e9a0cb95c6abb24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angryMonkeySprite: {fileID: 21300000, guid: 95aa5e78f9a68d24cbda09b8defe94c3, type: 3}
 --- !u!1 &246912712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,7 +2054,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 63d2a9b3ba0a026489355390df94ab61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

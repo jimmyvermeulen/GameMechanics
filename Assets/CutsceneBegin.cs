@@ -10,6 +10,9 @@ public class CutsceneBegin : MonoBehaviour {
     public Animation cameraAnimation;
     public Animation bananas;
     public AudioClip eatSound;
+    public AudioClip landingSound;
+    public AudioClip monkeyLaugh;
+    public AudioClip bossPickup;
     public GameObject[] handBananas;
     public GameObject heart;
     public GameObject bossMonkeyObject;
@@ -42,6 +45,8 @@ public class CutsceneBegin : MonoBehaviour {
 		if(!bossMonkey.isPlaying && startedFall)
         {
             startedFall = false;
+            sounds.clip = landingSound;
+            sounds.Play();
             monkey.Play();
             cameraAnimation.Play();
             bossMonkey.Play("pickupBananas");
@@ -51,6 +56,8 @@ public class CutsceneBegin : MonoBehaviour {
         {
             pickingUpBananas = false;
             bananas.Play();
+            sounds.clip = bossPickup;
+            sounds.Play();
             bossmonkeySpriteRenderer.sprite = pickupBossSprite;
             bossmonkeySpriteRenderer.flipY = true;
             pickingUpGirlMonkey = true;
@@ -67,10 +74,14 @@ public class CutsceneBegin : MonoBehaviour {
         {
             pickedUpGirlMonkey = false;
             girlMonkey.Play("GirlMonkeyMoveToBoss");
+            sounds.clip = bossPickup;
+            sounds.Play();
             movingAway = true;
         }
         if(!girlMonkey.isPlaying && movingAway)
         {
+            sounds.clip = monkeyLaugh;
+            sounds.Play();
             bossmonkeySpriteRenderer.sprite = pickupMonkeyGirlBossSprite;
             bossmonkeySpriteRenderer.flipY = false;
             girlMonkeyObject.transform.parent = bossMonkeyObject.transform;
